@@ -130,6 +130,7 @@ main section {
 }
 
 
+
 /* FORMULARIO */
 form {
   margin-top: 1rem;
@@ -167,7 +168,6 @@ button {
   border-radius: 5px;
   font-size: 1rem;
   transition: background-color 0.3s ease;
-   min-width: 200px;
 }
 
 button:hover {
@@ -213,14 +213,14 @@ footer img {
 
 
 /* media query */
-@media only screen and (min-width: 600px) {
-  /* Ajustar el ancho del contenido principal */
+@media only screen and (min-width: 620px) {
+  
   main {
     width: 80%;
     padding: 3rem 2rem;
   }
 
-  /* Galería: mostrar imágenes en fila de a 2 */
+  
   .imagenes-galería {
     justify-content: space-between;
   }
@@ -229,23 +229,23 @@ footer img {
     width: 48%;
   }
 
-  /* Texto más grande en títulos */
+  
   h1 {
     font-size: 3rem;
   }
 
-  /* Agrandar botón */
+  
   button {
     font-size: 1.1rem;
     padding: 1rem 2rem;
   }
 
-  /* Separación más amplia en el formulario */
+  
   .campo-formulario {
     margin-bottom: 2rem;
   }
 
-  /* Mejorar visual para el footer */
+  
   footer {
     flex-direction: row;
     justify-content: space-between;
