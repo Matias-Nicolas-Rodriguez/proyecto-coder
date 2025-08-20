@@ -1,0 +1,52 @@
+/* media query */
+@media only screen and (min-width: 620px) {
+  
+  main {
+    width: 80%;
+    padding: 3rem 2rem;
+  }
+
+  
+  .imagenes-galería {
+    justify-content: space-between;
+  }
+
+  .imagenes-galería img {
+    width: 48%;
+  }
+
+  
+  h1 {
+    font-size: 3rem;
+  }
+
+  
+  button {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+  }
+
+  
+  .campo-formulario {
+    margin-bottom: 2rem;
+  }
+
+  
+  footer {
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    padding: 2rem 4rem;
+    flex-wrap: wrap;
+  }
+
+  .links {
+    margin-top: 0;
+  }
+}
+
+
+#carouselExample .carousel-item img {
+    max-height: 500px;
+  }

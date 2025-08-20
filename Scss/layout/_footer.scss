@@ -1,0 +1,29 @@
+/* FOOTER */
+footer {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--blanco);
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 17rem;
+  width: 100%;
+ /* display: flex flow-root;*/
+  justify-content: center;
+  position: relative;
+}  
+
+
+
+footer img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+}
+
+.redes{
+  text-align: center;
+}
+
+.links{
+  margin-top: 0;
+  margin-bottom: 1rem;
+}

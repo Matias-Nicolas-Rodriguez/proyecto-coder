@@ -1,0 +1,20 @@
+/* ENCABEZADO */
+.encabezado {
+  align-items: center;
+  @extend %flex-basico;
+}
+
+
+.w-100{
+  width: 100% !important;
+}
+.logo img{
+  
+  max-width: 100px;
+  height: auto;
+  background: transparent;
+}
+
+.index-h1{
+  text-decoration: none;
+}
