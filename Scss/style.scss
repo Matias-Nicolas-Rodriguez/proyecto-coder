@@ -75,20 +75,6 @@ p {
 
 }
 
-/* GALERÍA */
-.imagenes-galería {
-  gap: 1rem;
-
- @extend  %flex-basico;
-}
-
-.imagenes-galería img {
-  width: 90%;
-  max-width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
 
 /* BOTÓN */
 button {

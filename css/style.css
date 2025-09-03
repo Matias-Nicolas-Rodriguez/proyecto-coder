@@ -6,7 +6,7 @@
   font-family: "Oswald", sans-serif;
 }
 
-.imagenes-galería, .encabezado {
+.encabezado {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -20,7 +20,7 @@
   font-family: "Oswald", sans-serif;
 }
 
-.imagenes-galería, .encabezado {
+.encabezado {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -207,18 +207,6 @@ p {
 .parrafo-servicios {
   font-style: italic;
   font-size: 1.5em;
-}
-
-/* GALERÍA */
-.imagenes-galería {
-  gap: 1rem;
-}
-
-.imagenes-galería img {
-  width: 90%;
-  max-width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 /* BOTÓN */
