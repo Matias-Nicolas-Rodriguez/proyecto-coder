@@ -108,3 +108,32 @@ button:hover {
 
 
 
+
+/* Hover effect para las cards */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajuste de la imagen dentro de la card */
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover;
+  height: 180px; /* ajusta el alto a gusto */
+}
+
+
+.card-text{
+    color: $rojo;
+    font-size: 1rem;
+}
+
+
+
+
