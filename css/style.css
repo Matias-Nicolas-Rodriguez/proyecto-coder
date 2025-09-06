@@ -249,4 +249,13 @@ button:hover {
   font-size: 1rem;
 }
 
+.subtitulos {
+  color: #ff2d55;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 2.5rem;
+  margin: 2rem 0 1rem;
+  font-weight: bold !important;
+}
+
 /*# sourceMappingURL=style.css.map */
