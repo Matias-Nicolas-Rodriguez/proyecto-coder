@@ -1,0 +1,5 @@
+[
+  { "tipo": "Popular", "precio": 3000 },
+  { "tipo": "Platea", "precio": 5000 },
+  { "tipo": "Palco", "precio": 10000 }
+]

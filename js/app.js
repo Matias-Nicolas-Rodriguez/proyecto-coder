@@ -1,71 +1,89 @@
-// Array de tipos de entradas con precios
-const tiposEntradas = [
-  { tipo: "Popular", precio: 3000 },
-  { tipo: "Platea", precio: 5000 },
-  { tipo: "Palco", precio: 10000 }
-];
+// --- Cargar precios desde JSON ---
+let tiposEntradas = [];
 
-// Variable global para el total
-let total = 0;
-
-// Función para elegir el tipo de entrada
-function elegirTipoEntrada() {
-  let mensaje = "Elegí el tipo de entrada:\n";
-  tiposEntradas.forEach((entrada, index) => {
-    mensaje += `${index + 1}. ${entrada.tipo} - $${entrada.precio}\n`;
+fetch("./js/entradas.json")
+  .then((res) => res.json())
+  .then((data) => {
+    tiposEntradas = data;
+    iniciarSimulador();
+  })
+  .catch(() => {
+    console.error("Error al cargar precios de entradas.");
   });
 
-  let opcion = parseInt(prompt(mensaje));
-
-  if (isNaN(opcion) || opcion < 1 || opcion > tiposEntradas.length) {
-    
-    return elegirTipoEntrada();
-  }
-
-  return tiposEntradas[opcion - 1];
-}
-
-// Función para pedir la cantidad
-function pedirEntradas() {
-  let cantidad = parseInt(prompt("¿Cuántas entradas querés comprar?"));
-
-  if (isNaN(cantidad) || cantidad <= 0) {
-    alert("⚠️ Tenés que ingresar un número válido mayor a 0.");
-    return pedirEntradas();
-  }
-
-  return cantidad;
-}
-
-// Función para calcular el total
-function calcularTotal(cantidad, precioUnitario) {
-  return cantidad * precioUnitario;
-}
-
-// Función principal del simulador
+// --- Función principal ---
 function iniciarSimulador() {
-  alert("🎟 Bienvenido al simulador de compra de entradas");
+  const selectTipo = document.getElementById("tipoEntrada");
+  const inputCantidad = document.getElementById("cantidad");
+  const btnCalcular = document.getElementById("btnCalcular");
+  const resultadoDiv = document.getElementById("resultado");
 
-  let tipoElegido = elegirTipoEntrada();
-  let cantidad = pedirEntradas();
+  // Cargar última compra guardada
+  mostrarUltimaCompra(resultadoDiv);
 
-  total = calcularTotal(cantidad, tipoElegido.precio);
+  btnCalcular.addEventListener("click", () => {
+    const tipoSeleccionado = selectTipo.value;
+    const cantidad = parseInt(inputCantidad.value);
 
-  let confirmar = confirm(
-    `Vas a comprar ${cantidad} entradas tipo ${tipoElegido.tipo}.\n` +
-    `Precio unitario: $${tipoElegido.precio}\n` +
-    `Total a pagar: $${total}\n\n` +
-    "¿Confirmás la compra?"
-  );
+    if (isNaN(cantidad) || cantidad <= 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "Cantidad inválida",
+        text: "Ingresá una cantidad válida de entradas."
+      });
+      return;
+    }
 
-  if (confirmar) {
-    alert("✅ ¡Compra realizada con éxito!");
-    console.log(`El usuario compró ${cantidad} entradas tipo ${tipoElegido.tipo} por un total de $${total}.`);
-  } else {
-    alert("❌ Compra cancelada.");
-    console.log("El usuario canceló la compra.");
-  }
+    const entrada = tiposEntradas.find((e) => e.tipo === tipoSeleccionado);
+    const total = entrada.precio * cantidad;
+
+    // Mostrar resultado
+    resultadoDiv.innerHTML = `
+      <p>🎟 Compraste <strong>${cantidad}</strong> entradas tipo <strong>${entrada.tipo}</strong>.</p>
+      <p>Precio unitario: $${entrada.precio}</p>
+      <p><strong>Total a pagar: $${total}</strong></p>
+      <button id="btnGuardar" class="btn btn-success mt-3">Guardar compra</button>
+      <button id="btnVaciar" class="btn btn-secondary mt-3 ms-2">Vaciar compras</button>
+    `;
+
+    // Botón guardar compra
+    document.getElementById("btnGuardar").addEventListener("click", () => {
+      guardarCompra(entrada.tipo, cantidad, total);
+      Swal.fire({
+        icon: "success",
+        title: "Compra guardada",
+        text: `Se registró tu compra de ${cantidad} entradas tipo ${entrada.tipo}.`
+      });
+    });
+
+    // Botón vaciar compras
+    document.getElementById("btnVaciar").addEventListener("click", () => {
+      localStorage.removeItem("compras");
+      resultadoDiv.innerHTML = "";
+      Swal.fire({
+        icon: "info",
+        title: "Carrito vaciado",
+        text: "Se eliminaron todas las compras guardadas."
+      });
+    });
+  });
 }
 
-// Ejecutar el simulador al cargar la página
-iniciarSimulador();
+// --- Guardar compra en localStorage ---
+function guardarCompra(tipo, cantidad, total) {
+  const compra = { tipo, cantidad, total };
+  const compras = JSON.parse(localStorage.getItem("compras")) || [];
+  compras.push(compra);
+  localStorage.setItem("compras", JSON.stringify(compras));
+}
+
+// --- Mostrar última compra ---
+function mostrarUltimaCompra(resultadoDiv) {
+  const compras = JSON.parse(localStorage.getItem("compras"));
+  if (compras && compras.length > 0) {
+    const ultima = compras[compras.length - 1];
+    resultadoDiv.innerHTML = `
+      <p>🕓 Última compra: ${ultima.cantidad} entradas tipo ${ultima.tipo} por $${ultima.total}</p>
+    `;
+  }
+}
